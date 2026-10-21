@@ -1,0 +1,10 @@
+/* ═══════════════════════════════════════════════════════════
+   EduManage — Main Stylesheet Bundle
+   Imports all modular stylesheets in explicit order.
+   ═══════════════════════════════════════════════════════════ */
+
+@import './variables.css';
+@import './base.css';
+@import './layout.css';
+@import './components.css';
+@import './pages.css';

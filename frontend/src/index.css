@@ -1,0 +1,2 @@
+/* Master CSS entry point — forwards to modular CSS architecture */
+@import './css/main.css';
