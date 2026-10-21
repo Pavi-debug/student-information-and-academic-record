@@ -92,12 +92,6 @@ function LoginPage() {
             <p>Sign in to your admin account</p>
           </div>
 
-          {/* Default credentials hint */}
-          <div className="login-hint">
-            <i className="ph-info" />
-            <span>Default: <strong>admin</strong> / <strong>admin123</strong></span>
-          </div>
-
           <form className="login-form" onSubmit={handleSubmit}>
             {/* Error message */}
             {error && (
