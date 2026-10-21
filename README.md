@@ -129,15 +129,6 @@ Access the web interface at **http://localhost:5173**.
 
 ---
 
-## 🔑 Default Admin Credentials
-
-| Field | Value |
-|---|---|
-| Username | `admin` |
-| Password | `admin123` |
-
----
-
 ## 📄 License
 
 This project is for educational and administrative purposes.
