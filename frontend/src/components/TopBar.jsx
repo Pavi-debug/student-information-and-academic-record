@@ -36,7 +36,16 @@ function TopBar({ onMenuClick }) {
       <div className="topbar__right">
         <div className="topbar__admin">
           <div className="topbar__avatar">
-            <i className="ph-user" />
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="12" cy="8" r="4" fill="currentColor" />
+              <path d="M4 21a8 8 0 0 1 16 0H4Z" fill="currentColor" />
+            </svg>
           </div>
           <div className="topbar__admin-info">
             <span className="topbar__admin-name">{admin.username || 'Admin'}</span>
