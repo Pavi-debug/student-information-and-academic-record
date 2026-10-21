@@ -61,7 +61,18 @@ function LoginPage() {
       <div className="login-left">
         <div className="login-brand">
           <div className="login-logo">
-            <i className="ph-graduation-cap" />
+            <svg
+              viewBox="0 0 64 64"
+              width="40"
+              height="40"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M4 24 32 10 60 24 32 38 4 24Z" fill="#fff" />
+              <path d="M15 32v12c9.5 7 24.5 7 34 0V32L32 40 15 32Z" fill="#fff" />
+              <path d="M58 26v17" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" />
+              <circle cx="58" cy="46" r="3" fill="#fff" />
+            </svg>
           </div>
           <h1>EduManage</h1>
           <p>Student Management System</p>
