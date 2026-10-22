@@ -33,6 +33,22 @@ const academicRecordSchema = new mongoose.Schema(
       enum: ['S', 'A+', 'A', 'B+', 'B', 'C', 'P', 'F'],
       default: 'F',
     },
+    classesAttended: {
+      type: Number,
+      min: [0, 'Classes attended cannot be negative'],
+      validate: {
+        validator: Number.isInteger,
+        message: 'Classes attended must be a whole number',
+      },
+    },
+    totalClasses: {
+      type: Number,
+      min: [1, 'Total classes must be at least 1'],
+      validate: {
+        validator: Number.isInteger,
+        message: 'Total classes must be a whole number',
+      },
+    },
     attendancePercentage: {
       type: Number,
       required: [true, 'Attendance percentage is required'],

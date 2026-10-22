@@ -3,6 +3,7 @@
 
 import AcademicRecord from '../models/AcademicRecord.js';
 import Student from '../models/Student.js';
+import { normalizeAttendanceInput } from '../utils/attendance.js';
 
 // @desc    Add academic record for a student
 // @route   POST /api/students/:studentId/academic-records
@@ -10,7 +11,8 @@ import Student from '../models/Student.js';
 export const addAcademicRecord = async (req, res, next) => {
   try {
     const { studentId } = req.params;
-    const { semester, subject, marks, grade, attendancePercentage, academicYear } = req.body;
+    const { semester, subject, marks, grade, academicYear } = req.body;
+    const attendance = normalizeAttendanceInput(req.body, { required: true });
 
     const studentExists = await Student.findById(studentId);
     if (!studentExists) {
@@ -24,8 +26,8 @@ export const addAcademicRecord = async (req, res, next) => {
       subject,
       marks,
       grade,
-      attendancePercentage,
       academicYear,
+      ...attendance,
     });
 
     res.status(201).json({
@@ -34,6 +36,7 @@ export const addAcademicRecord = async (req, res, next) => {
       data: record,
     });
   } catch (error) {
+    if (error.statusCode && !res.headersSent) res.status(error.statusCode);
     next(error);
   }
 };
@@ -59,6 +62,7 @@ export const getAcademicRecordsByStudent = async (req, res, next) => {
       data: records,
     });
   } catch (error) {
+    if (error.statusCode && !res.headersSent) res.status(error.statusCode);
     next(error);
   }
 };
@@ -68,7 +72,8 @@ export const getAcademicRecordsByStudent = async (req, res, next) => {
 // @access  Private
 export const updateAcademicRecord = async (req, res, next) => {
   try {
-    const record = await AcademicRecord.findByIdAndUpdate(req.params.id, req.body, {
+    const updates = { ...req.body, ...normalizeAttendanceInput(req.body) };
+    const record = await AcademicRecord.findByIdAndUpdate(req.params.id, updates, {
       new: true,
       runValidators: true,
     });
@@ -84,6 +89,7 @@ export const updateAcademicRecord = async (req, res, next) => {
       data: record,
     });
   } catch (error) {
+    if (error.statusCode && !res.headersSent) res.status(error.statusCode);
     next(error);
   }
 };
@@ -105,6 +111,7 @@ export const deleteAcademicRecord = async (req, res, next) => {
       message: 'Academic record deleted successfully',
     });
   } catch (error) {
+    if (error.statusCode && !res.headersSent) res.status(error.statusCode);
     next(error);
   }
 };
